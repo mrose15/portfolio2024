@@ -1,5 +1,3 @@
-function Michele() {
-  return <div>michele page</div>;
+export default function Michele() {
+  return <div>Michele page</div>;
 }
-
-export default Michele;
