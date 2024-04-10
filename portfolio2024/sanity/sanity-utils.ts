@@ -14,7 +14,10 @@ export async function getProjects(): Promise<Project[]> {
             _createdAt,
             name,
             "slug": slug.current,
-            "image": image.asset->url,
+            "image": image.asset->{
+              url,
+              alt
+            },
             url,
             content
         }`
