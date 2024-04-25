@@ -1,15 +1,23 @@
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
-import schemas from "./sanity/schemas";
+import { visionTool } from "@sanity/vision";
+import { schema } from "./sanity/schemas";
+
+import client_config from "./sanity/config/client-config";
 
 const config = defineConfig({
-  projectId: "883v7oiz",
-  dataset: "production",
+  projectId: client_config.projectId,
+  dataset: client_config.dataset,
   title: "My Portfolio Site",
-  apiVersion: "2024-04-08",
+  apiVersion: client_config.apiVersion,
   basePath: "/admin",
-  plugins: [structureTool()],
-  schema: { types: schemas },
+  schema,
+  plugins: [
+    structureTool(),
+    // Vision is a tool that lets you query your content with GROQ in the studio
+    // https://www.sanity.io/docs/the-vision-plugin
+    visionTool({ defaultApiVersion: client_config.apiVersion }),
+  ],
 });
 
 export default config;
